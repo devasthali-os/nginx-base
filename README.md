@@ -20,42 +20,9 @@ lrwxrwxrwx 1 root root   29 Aug 27 22:07 modules -> ../../usr/lib64/nginx/module
 
 ```bash
 [root@fbff25bd10aa /]# cat /etc/nginx/nginx.conf 
-
-user  nginx;
-worker_processes  1;
-
-error_log  /var/log/nginx/error.log warn;
-pid        /var/run/nginx.pid;
-
-
-events {
-    worker_connections  1024;
-}
-
-
-http {
-    include       /etc/nginx/mime.types;
-    default_type  application/octet-stream;
-
-    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
-                      '$status $body_bytes_sent "$http_referer" '
-                      '"$http_user_agent" "$http_x_forwarded_for"';
-
-    access_log  /var/log/nginx/access.log  main;
-
-    sendfile        on;
-    #tcp_nopush     on;
-
-    keepalive_timeout  65;
-
-    #gzip  on;
-
-    include /etc/nginx/conf.d/*.conf;
-}
 ```
 
-
-```
+```bash
 curl -v http://localhost:8085/
 *   Trying ::1...
 * TCP_NODELAY set
@@ -79,4 +46,37 @@ curl -v http://localhost:8085/
 nginx-base
 </h1>
 * Connection #0 to host localhost left intact
+```
+
+Listen Q
+----------
+
+```bash
+[root@00fe41fc696a /]# netstat 
+Active Internet connections (w/o servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State      
+tcp        0      0 00fe41fc696a:http       gateway:53434           ESTABLISHED
+tcp        0      0 00fe41fc696a:http       gateway:53432           ESTABLISHED
+Active UNIX domain sockets (w/o servers)
+Proto RefCnt Flags       Type       State         I-Node   Path
+unix  3      [ ]         STREAM     CONNECTED     264606   
+unix  3      [ ]         STREAM     CONNECTED     264605   
+```
+
+```
+[root@00fe41fc696a /]# netstat -v  
+Active Internet connections (w/o servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State      
+tcp        0      0 00fe41fc696a:http       gateway:53438           ESTABLISHED
+tcp        0      0 00fe41fc696a:http       gateway:53436           ESTABLISHED
+netstat: no support for `AF INET (sctp)' on this system.
+netstat: no support for `AF INET (sctp)' on this system.
+Active UNIX domain sockets (w/o servers)
+Proto RefCnt Flags       Type       State         I-Node   Path
+unix  3      [ ]         STREAM     CONNECTED     264606   
+unix  3      [ ]         STREAM     CONNECTED     264605   
+netstat: no support for `AF IPX' on this system.
+netstat: no support for `AF AX25' on this system.
+netstat: no support for `AF X25' on this system.
+netstat: no support for `AF NETROM' on this system.
 ```
