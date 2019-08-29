@@ -121,3 +121,13 @@ Reading: 0 Writing: 1 Waiting: 0
 resources
 ----------
 - https://docs.nginx.com/nginx/admin-guide/web-server/serving-static-content/
+
+also see
+----------
+- apache server - https://github.com/duwamish-os/metal-kingdom.php
+
+TODOs
+-----
+- [ ] deploy container to k8s cluster
+- [ ] perf
+
