@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nx-service
+  labels:
+    app: nx-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nx-service
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: nx-service
+    spec:
+      containers:
+        - image: ???.dkr.ecr.us-east-1.amazonaws.com/nx:1.0.0
+          imagePullPolicy: Always
+          name: nx-service
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          env:
+            - name: Name
+              value: "nx-service"
+            - name: DeployedOn
+              value: "2019-08-28"
