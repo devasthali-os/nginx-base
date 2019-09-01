@@ -89,7 +89,7 @@ unix  3      [ ]         STREAM     CONNECTED     264606
 unix  3      [ ]         STREAM     CONNECTED     264605   
 ```
 
-```
+```bash
 [root@00fe41fc696a /]# netstat -v  
 Active Internet connections (w/o servers)
 Proto Recv-Q Send-Q Local Address           Foreign Address         State      
@@ -121,6 +121,7 @@ Reading: 0 Writing: 1 Waiting: 0
 resources
 ----------
 - https://docs.nginx.com/nginx/admin-guide/web-server/serving-static-content/
+- reverse proxy - http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass
 
 also see
 ----------
