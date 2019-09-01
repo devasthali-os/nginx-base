@@ -131,4 +131,4 @@ TODOs
 -----
 - [ ] deploy container to k8s cluster
 - [ ] perf
-
+- [ ] ship metrics to graphana
