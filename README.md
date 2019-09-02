@@ -132,3 +132,11 @@ TODOs
 - [ ] deploy container to k8s cluster
 - [ ] perf
 - [ ] ship metrics to graphana
+
+k8s ingress controller
+-----------------------
+
+```bash
+kubectl apply -f k8s-ingress-controller.yaml --namespace dev
+```
+
