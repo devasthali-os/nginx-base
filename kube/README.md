@@ -42,3 +42,13 @@ NAME          HOSTS          ADDRESS                                            
 dev-ingress   dev.abc.info   abc.us-east-1.elb.amazonaws.com   80        93s
 ```
 
+ingress pod
+------------
+
+```bash
+kubectl logs -f nginx-ingress-controller-65fd579494-6jcdx --namespace ingress-nginx
+I0902 04:49:17.931741       8 status.go:309] updating Ingress test/dev-ingress status from [] to [{ abc.us-east-1.elb.amazonaws.com}]
+I0902 04:49:17.936585       8 event.go:258] Event(v1.ObjectReference{Kind:"Ingress", Namespace:"test", Name:"dev-ingress", UID:"e2650132-cd3c-11e9-a9ee-0e52ab4772a4", APIVersion:"extensions/v1beta1", ResourceVersion:"6154763", FieldPath:""}): type: 'Normal' reason: 'UPDATE' Ingress test/dev-ingress
+30.0.20.221 - [30.0.20.221] - - [02/Sep/2019:04:49:22 +0000] "PROXY TCP4 30.0.20.59 30.0.20.59 48168 30385" 400 163 "-" "-" 0 0.000 [] [] - - - - 96c0c05e5bb7437a16787861ce7cc9ea
+30.0.1.254 - [30.0.1.254] - - [02/Sep/2019:04:49:24 +0000] "PROXY TCP4 30.0.1.187 30.0.1.187 22798 30385" 400 163 "-" "-" 0 0.000 [] [] - - - - f56ea4aafa02391ec14ac8ae64c65ebb
+```
