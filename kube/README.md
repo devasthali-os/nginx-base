@@ -46,6 +46,30 @@ ingress pod
 ------------
 
 ```bash
+λ kubectl describe ingress --namespace test
+Name:             dev-ingress
+Namespace:        test
+Address:          abc.us-east-1.elb.amazonaws.com
+Default backend:  default-http-backend:80 (<none>)
+Rules:
+  Host  Path  Backends
+  ----  ----  --------
+  *     
+        /svc1(/|$)(.*)   rest-server:80 (<none>)
+Annotations:
+  kubectl.kubernetes.io/last-applied-configuration:  {"apiVersion":"extensions/v1beta1","kind":"Ingress","metadata":{"annotations":{"nginx.ingress.kubernetes.io/rewrite-target":"/$2","nginx.ingress.kubernetes.io/ssl-redirect":"false"},"name":"dev-ingress","namespace":"test"},"spec":{"rules":[{"http":{"paths":[{"backend":{"serviceName":"rest-server","servicePort":80},"path":"/svc1(/|$)(.*)"}]}}]}}
+
+  nginx.ingress.kubernetes.io/rewrite-target:  /$2
+  nginx.ingress.kubernetes.io/ssl-redirect:    false
+Events:
+  Type    Reason  Age               From                      Message
+  ----    ------  ----              ----                      -------
+  Normal  UPDATE  2m (x6 over 16h)  nginx-ingress-controller  Ingress test/dev-ingress
+
+```
+
+
+```bash
 kubectl logs -f nginx-ingress-controller-65fd579494-6jcdx --namespace ingress-nginx
 I0902 04:49:17.931741       8 status.go:309] updating Ingress test/dev-ingress status from [] to [{ abc.us-east-1.elb.amazonaws.com}]
 I0902 04:49:17.936585       8 event.go:258] Event(v1.ObjectReference{Kind:"Ingress", Namespace:"test", Name:"dev-ingress", UID:"e2650132-cd3c-11e9-a9ee-0e52ab4772a4", APIVersion:"extensions/v1beta1", ResourceVersion:"6154763", FieldPath:""}): type: 'Normal' reason: 'UPDATE' Ingress test/dev-ingress

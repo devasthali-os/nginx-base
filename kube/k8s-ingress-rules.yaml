@@ -5,12 +5,13 @@ metadata:
   #  namespace: dev
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
-  - host: dev.abc.info
-    http:
+          #  - host: dev.abc.info
+  - http:
       paths:
       - path: /svc1(/|$)(.*)
         backend:
-          serviceName: eccount-rest
+          serviceName: rest-server
           servicePort: 80
