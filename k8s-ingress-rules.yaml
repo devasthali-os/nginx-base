@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: dev-ingress
+  #  namespace: dev
+spec:
+  rules:
+  - host: dev.abc.info
+    http:
+      paths:
+      - path: /svc1
+        backend:
+          serviceName: eccount-rest
+          servicePort: 80
