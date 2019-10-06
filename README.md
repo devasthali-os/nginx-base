@@ -2,6 +2,11 @@ nginx base
 -----------
 
 ```bash
+docker build -t nginx-base:1.0.0 .
+docker run -p8080:8080 -it nginx-base:1.0.0
+```
+
+```bash
 [root@fbff25bd10aa /]# ll /etc/nginx/
 total 40
 drwxr-xr-x 2 root root 4096 Aug 27 22:07 conf.d
@@ -38,12 +43,12 @@ configure arguments: --prefix=/etc/nginx --sbin-path=/usr/sbin/nginx --modules-p
 
 
 ```bash
-curl -v http://localhost:8085/
+curl -v http://localhost:8080/
 *   Trying ::1...
 * TCP_NODELAY set
 * Connected to localhost (::1) port 8085 (#0)
 > GET / HTTP/1.1
-> Host: localhost:8085
+> Host: localhost:8080
 > User-Agent: curl/7.54.0
 > Accept: */*
 > 
@@ -107,8 +112,8 @@ netstat: no support for `AF X25' on this system.
 netstat: no support for `AF NETROM' on this system.
 ```
 
-metrics
---------
+metrics monitoring
+------------------
 
 ```bash
 [root@a02ff83c3bf5 /]# curl localhost:9090/nginx_metrics
@@ -125,12 +130,12 @@ resources
 
 also see
 ----------
-- apache server - https://github.com/duwamish-os/metal-kingdom.php
+- apache server - https://github.com/duwamish-os/ghattekulo-kingdom.php
 
 TODOs
 -----
-- [ ] deploy container to k8s cluster
 - [ ] perf
-- [ ] ship metrics to graphana
+- [ ] ship metrics to graphite/graphana - https://www.nginx.com/blog/monitoring-nginx/
+http://software-empathy.pl/2016/08/centos-graphite-grafana-nginx-monitoring/
 
 
