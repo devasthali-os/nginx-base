@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: dev-ingress
@@ -11,7 +11,10 @@ spec:
           #  - host: dev.abc.info
   - http:
       paths:
-      - path: /svc1(/|$)(.*)
-        backend:
-          serviceName: rest-server
-          servicePort: 80
+        - path: /svc1(/|$)(.*)
+          pathType: Prefix 
+          backend:
+          service:
+            name: rest-server
+            port: 
+              number: 80
