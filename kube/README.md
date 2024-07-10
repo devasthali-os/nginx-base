@@ -11,6 +11,13 @@ client -------> ingress LB ---------------> [ ingress ---------> routing rules -
               (Azure, AWS LB)      
 ```
 
+Delete resource
+---
+
+```bash
+kubectl delete ingress my-ingress --namespace test
+kubectl delete service  dev-nginx --namespace ingress-nginx
+```
 
 ```bash
 kubectl apply -f k8s-ingress-config.yaml
