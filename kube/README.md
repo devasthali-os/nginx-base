@@ -4,7 +4,7 @@ k8s Ingress
 - https://kubernetes.io/docs/concepts/services-networking/ingress/
 - You may need to deploy an Ingress controller such as ingress-nginx. 
 - You can choose from a number of Ingress controllers:https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/
- 
+
 ```
                                                                              k8s cluster
 client -------> ingress LB ---------------> [ ingress ---------> routing rules -> k8s service ---------> k8s pods ]
@@ -13,6 +13,8 @@ client -------> ingress LB ---------------> [ ingress ---------> routing rules -
 
 
 ```bash
+## taken from https://kubernetes.github.io/ingress-nginx/deploy/#aws
+
 kubectl apply -f k8s-ingress-config.yaml
 namespace/ingress-nginx created
 serviceaccount/ingress-nginx created
@@ -147,6 +149,7 @@ Delete resources
 kubectl delete ingress my-ingress --namespace test
 kubectl delete service  dev-nginx --namespace ingress-nginx
 kubectl delete clusterrole nginx-ingress-clusterrole
+kubectl delete clusterrolebinding nginx-ingress-clusterrole-nisa-binding
 
 kubectl delete job ingress-nginx-admission-create --namespace=ingress-nginx
 kubectl delete job ingress-nginx-admission-patch --namespace=ingress-nginx
