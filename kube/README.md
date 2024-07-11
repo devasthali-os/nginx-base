@@ -146,6 +146,7 @@ Delete resources
 ```bash
 kubectl delete ingress my-ingress --namespace test
 kubectl delete service  dev-nginx --namespace ingress-nginx
+kubectl delete clusterrole nginx-ingress-clusterrole
 
 kubectl delete job ingress-nginx-admission-create --namespace=ingress-nginx
 kubectl delete job ingress-nginx-admission-patch --namespace=ingress-nginx
