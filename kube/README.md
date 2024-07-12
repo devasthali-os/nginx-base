@@ -3,7 +3,7 @@ k8s Ingress
 
 - https://kubernetes.io/docs/concepts/services-networking/ingress/
 - You may need to deploy an Ingress controller such as ingress-nginx. 
-- You can choose from a number of Ingress controllers:https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/
+- You can choose from a number of Ingress controllers: https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/
 
 ```
                                                                              k8s cluster
@@ -11,9 +11,14 @@ client -------> ingress LB ---------------> [ ingress ---------> routing rules -
               (Azure, AWS LB)      
 ```
 
+```bash
+kubectl get ValidatingWebhookConfiguration
+```
+
+- taken from https://kubernetes.github.io/ingress-nginx/deploy/#aws
+- https://kubernetes.github.io/ingress-nginx/deploy/#network-load-balancer-nlb
 
 ```bash
-## taken from https://kubernetes.github.io/ingress-nginx/deploy/#aws
 
 kubectl apply -f k8s-ingress-config.yaml
 namespace/ingress-nginx created
